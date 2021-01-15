@@ -5,7 +5,7 @@
 
 library(sas7bdat)
 
-data <- read.sas7bdat("C:\\Users\\alex_\\Desktop\\DORI\\Practica_2\\em_save_train.sas7bdat")
+data <- read.sas7bdat("C:\\Users\\Dori_\\Desktop\\DORI\\Practica_2\\em_save_train.sas7bdat")
 names(data)
 
 # La variable dependiente (Objetivo), no puede tener 0 y 1 como valores, da error
@@ -40,7 +40,7 @@ modelo2 <- c("Edad","CigsPorDia","PresionSanguinea")
 # AvNNet:
 #-------------------------------------
 
-# Realizamos un primer modelo aplicando vectores obre los parámetros para
+# Realizamos un primer modelo aplicando vectores obre los parÃ¡metros para
 # determinar el mejor conjunto de estos
 
 set.seed(12345)
@@ -110,7 +110,7 @@ medias4<-cruzadaavnnetbin(data=data,
 medias4$modelo="avnnet3"
 # 
 # 
-# Mejor parametrización obtenida en el estudio con vectores, NO ES REAL, al aplicar validación
+# Mejor parametrizaciÃ³n obtenida en el estudio con vectores, NO ES REAL, al aplicar validaciÃ³n
 # cruzada repetida se observa mejor performance con 12 nodos
 medias5<-cruzadaavnnetbin(data=data,
                           vardep="TenYearCHD",listvars=modelo2,grupos=4,sinicio=1234,repe=5,
@@ -135,7 +135,7 @@ boxplot(data=union1,auc~modelo,main="AUC ~ M2")
 # Bagging y Random Forest:
 #-------------------------------------
 
-# Realizamos un primer modelo aplicando vectores obre los parámetros para
+# Realizamos un primer modelo aplicando vectores obre los parÃ¡metros para
 # determinar el mejor conjunto de estos
 
 set.seed(12345)
@@ -151,7 +151,7 @@ rf<- train(TenYearCHD~Edad+CigsPorDia+PresionSanguinea,data=data,
            importance=TRUE)
 
 rf
-# Observamos que el mejor mtry es 1, con lo cual será el que usemos para nuestros
+# Observamos que el mejor mtry es 1, con lo cual serÃ¡ el que usemos para nuestros
 # modelos de random forest
 
 library(randomForest)
@@ -195,7 +195,7 @@ medias9<-cruzadarfbin(data=data, vardep="TenYearCHD",listvars=modelo2,
 # 
 medias9$modelo="rf2"
 #
-# a menos arboles, la varianza desciende mucho, pero el sesgo esta bastante por debajo del resto de modelos también
+# a menos arboles, la varianza desciende mucho, pero el sesgo esta bastante por debajo del resto de modelos tambiÃ©n
 medias10<-cruzadarfbin(data=data, vardep="TenYearCHD",listvars=modelo2,
                       grupos=4,sinicio=1234,repe=5,nodesize=12,
                       mtry=1,ntree=600,replace=TRUE)
@@ -229,7 +229,7 @@ gbm<- train(TenYearCHD~Edad+CigsPorDia+PresionSanguinea,data=data,
 
 gbm
 
-# 167 combinaciones diferentes (EL PC CASI MUERE). Las mejores combinación
+# 167 combinaciones diferentes (EL PC CASI MUERE). Las mejores combinaciÃ³n
 # shrinkage  interaction.depth  n.minobsinnode  n.trees  Accuracy   Kappa  
 # 0.001      3                  10              2000     0.8501648  0.031702879
 # 0.010      2                  12               500     0.8501650  0.063435102
@@ -270,7 +270,7 @@ boxplot(data=union1,auc~modelo,main="AUC")
 
 
 ###########################################################################
-#  SVM LINEAL: SOLO PARÁMETRO C
+#  SVM LINEAL: SOLO PARÃMETRO C
 
 set.seed(12345)
 SVMgrid<-expand.grid(C=c(1,10,100))
@@ -313,7 +313,7 @@ medias15$modelo="SVM_3"
 # 
 
 #------------------------------------------------------------------
-#  SVM Polinomial: PARÁMETROS C, degree, scale
+#  SVM Polinomial: PARÃMETROS C, degree, scale
 
 SVMgrid<-expand.grid(C=c(0.01,0.05,0.1,0.2,0.5,1,2,5,10),
                      degree=c(2,3),scale=c(0.1,0.5,1,2,5))
@@ -333,7 +333,7 @@ SVM$results
 dat<-as.data.frame(SVM$results)
 library(ggplot2)
 
-# PLOT DE DOS VARIABLES CATEGÓRICAS, UNA CONTINUA
+# PLOT DE DOS VARIABLES CATEGÃ“RICAS, UNA CONTINUA
 ggplot(dat, aes(x=factor(C), y=Accuracy, 
                 color=factor(degree),pch=factor(scale))) +
   geom_point(position=position_dodge(width=0.5),size=3)
@@ -369,7 +369,7 @@ medias18$modelo="SVMPoly_3"
 #
 
 #--------------------------------------------------------------
-#  SVM RBF: PARÁMETROS C, sigma
+#  SVM RBF: PARÃMETROS C, sigma
 
 SVMgrid<-expand.grid(C=c(0.01,0.05,0.1,0.2,0.5,1,2,5,10,30),
                      sigma=c(0.01,0.05,0.1,0.2,0.5,1,2,5,10,30))

@@ -5,7 +5,7 @@
 
 library(sas7bdat)
 
-data <- read.sas7bdat("C:\\Users\\alex_\\Desktop\\DORI\\Practica_2\\em_save_train.sas7bdat")
+data <- read.sas7bdat("C:\\Users\\dory_\\Desktop\\DORI\\Practica_2\\em_save_train.sas7bdat")
 names(data)
 
 # La variable dependiente (Objetivo), no puede tener 0 y 1 como valores, da error
@@ -121,7 +121,7 @@ medias9_m3<-cruzadarfbin(data=data, vardep="TenYearCHD",listvars=modelo3,
 # 
 medias9_m3$modelo="rf2"
 #
-# a menos arboles, la varianza desciende mucho, pero el sesgo esta bastante por debajo del resto de modelos también
+# a menos arboles, la varianza desciende mucho, pero el sesgo esta bastante por debajo del resto de modelos tambiÃ©n
 medias10_m3<-cruzadarfbin(data=data, vardep="TenYearCHD",listvars=modelo3,
                        grupos=4,sinicio=1234,repe=5,nodesize=12,
                        mtry=2,ntree=50,replace=TRUE)
@@ -242,7 +242,7 @@ boxplot(data=union1,auc~modelo,main="AUC")
 ##############################################################################
 #  ******************   H2O   **************************
 # ****************************************************************************
-# validación cruzada h2o:
+# validaciÃ³n cruzada h2o:
 # ****************************************************************************
 
 

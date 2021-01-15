@@ -5,7 +5,7 @@
 
 library(sas7bdat)
 
-data <- read.sas7bdat("C:\\Users\\Dori_\\Desktop\\DORI\\Practica_2\\em_save_train.sas7bdat")
+data <- read.sas7bdat("C:\\Users\\dory_\\Desktop\\DORI\\Practica_2\\em_save_train.sas7bdat")
 names(data)
 
 # La variable dependiente (Objetivo), no puede tener 0 y 1 como valores, da error
